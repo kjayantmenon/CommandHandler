@@ -97,6 +97,10 @@
       <Project>{5a67f12b-5e09-4a38-a73b-5c4922f98d4c}</Project>
       <Name>CommandActor</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{e35c9f39-9f35-4157-80b9-30ca03de4575}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

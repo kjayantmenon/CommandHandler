@@ -9,6 +9,8 @@ using Microsoft.ServiceFabric.Services.Remoting.Runtime;
 using CommandActor.Interfaces;
 using Microsoft.ServiceFabric.Actors;
 using Microsoft.ServiceFabric.Actors.Client;
+using CommandActor;
+using Common;
 
 namespace CommandSvc
 {
@@ -32,11 +34,14 @@ namespace CommandSvc
 
         }
 
-        public async Task GetCommandStatus(Command cmd)
+        
+
+        public async Task<CmdStatus> GetCommandStatus(Command cmd)
         {
             ActorId cmdActorId = new ActorId(cmd.Id);
             ICommandActor _cmdActor = ActorProxy.Create<ICommandActor>(cmdActorId, new Uri("fabric:/CommandTest/CommandActorService"));
-            
+            CmdStatus status = await  _cmdActor.GetCommandStatus();
+            return status;
         }
 
         public async Task RecvCommandResponse(CommandResponse response)

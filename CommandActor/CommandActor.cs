@@ -8,6 +8,7 @@ using Microsoft.ServiceFabric.Actors.Runtime;
 using Microsoft.ServiceFabric.Actors.Client;
 using CommandActor.Interfaces;
 using Microsoft.ServiceFabric.Data.Collections;
+using Common;
 
 namespace CommandActor
 {
@@ -27,11 +28,18 @@ namespace CommandActor
         public async Task DoSomething(string cmd)
         {
             Console.WriteLine(" Something {0}",cmd);
+            _status = CmdStatus.Dispatched;
         }
 
-        public Task ProcessCommand(string cmdVerb, string cmdStatus, string cmdTarget)
+        protected CmdStatus _status { get; set; }
+        public async Task<CmdStatus> GetCommandStatus()
         {
-            throw new NotImplementedException();
+            return _status;
+        }
+
+        public async Task ProcessCommand(string cmdVerb, string cmdStatus, string cmdTarget)
+        {
+            _status = CmdStatus.Delivered;
             //_commandAttributes.Select()
         }
 

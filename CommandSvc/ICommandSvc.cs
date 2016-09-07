@@ -1,4 +1,6 @@
-﻿using Microsoft.ServiceFabric.Services.Remoting;
+﻿using CommandActor;
+using Common;
+using Microsoft.ServiceFabric.Services.Remoting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,7 @@ namespace CommandSvc
     {
         Task DispatchCommand(Command command);
         Task RecvCommandResponse(CommandResponse response);
-        Task GetCommandStatus(Command cmd);
+        Task<CmdStatus> GetCommandStatus(Command cmd);
     }
 
     public class Command
@@ -19,11 +21,8 @@ namespace CommandSvc
         public string Id { get; set; }
         public string CmdVerb { get; set; }
 
-        public Status CmdStatus { get; set; }
+        public CmdStatus CmdStatus { get; set; }
     }
 
-    public enum Status
-    {
-        Created, Dispatched, Delivered, ExecInProgress, ExecSuccess, ExecFailure
-    }
+    
 }

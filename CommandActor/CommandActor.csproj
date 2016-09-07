@@ -89,6 +89,10 @@
       <Project>{29416B28-E9EE-492B-BFCC-F7213DD3761A}</Project>
       <Name>CommandActor.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{e35c9f39-9f35-4157-80b9-30ca03de4575}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.ServiceFabric.Actors.2.0.217\build\Microsoft.ServiceFabric.Actors.targets" Condition="Exists('..\packages\Microsoft.ServiceFabric.Actors.2.0.217\build\Microsoft.ServiceFabric.Actors.targets')" />

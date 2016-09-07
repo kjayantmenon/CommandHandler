@@ -117,6 +117,10 @@
       <Project>{17202ccb-3d62-497c-af26-8974d92eeff8}</Project>
       <Name>CommandSvc</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{e35c9f39-9f35-4157-80b9-30ca03de4575}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Actors;
+using Common;
 
 namespace CommandActor.Interfaces
 {
@@ -29,7 +30,6 @@ namespace CommandActor.Interfaces
         Task DoSomething(string cmd);
 
         Task ProcessCommand(string cmdVerb, string cmdStatus, string cmdTarget);
-
-
+        Task<CmdStatus> GetCommandStatus();
     }
 }
