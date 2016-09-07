@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ApplicationManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ApplicationTypeName="CommandTestType" ApplicationTypeVersion="1.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+   <Parameters>
+      <Parameter Name="CommandSvc_InstanceCount" DefaultValue="-1" />
+      <Parameter Name="CommandWebApi_InstanceCount" DefaultValue="-1" />
+      <Parameter Name="CommandActorService_PartitionCount" DefaultValue="10" />
+      <Parameter Name="CommandActorService_MinReplicaSetSize" DefaultValue="2" />
+      <Parameter Name="CommandActorService_TargetReplicaSetSize" DefaultValue="3" />
+   </Parameters>
+   <ServiceManifestImport>
+      <ServiceManifestRef ServiceManifestName="CommandActorPkg" ServiceManifestVersion="1.0.0" />
+   </ServiceManifestImport>
+   <ServiceManifestImport>
+      <ServiceManifestRef ServiceManifestName="CommandSvcPkg" ServiceManifestVersion="1.0.0" />
+      <ConfigOverrides />
+   </ServiceManifestImport>
+   <ServiceManifestImport>
+      <ServiceManifestRef ServiceManifestName="CommandWebApiPkg" ServiceManifestVersion="1.0.0" />
+      <ConfigOverrides />
+   </ServiceManifestImport>
+   <DefaultServices>
+      <Service Name="CommandSvc">
+         <StatelessService ServiceTypeName="CommandSvcType" InstanceCount="[CommandSvc_InstanceCount]">
+            <SingletonPartition />
+         </StatelessService>
+      </Service>
+      <Service Name="CommandWebApi">
+         <StatelessService ServiceTypeName="CommandWebApiType" InstanceCount="[CommandWebApi_InstanceCount]">
+            <SingletonPartition />
+         </StatelessService>
+      </Service>
+      <Service Name="CommandActorService" GeneratedIdRef="67d13732-687c-44f6-b19f-363a9906ad72|Persisted">
+         <StatefulService ServiceTypeName="CommandActorServiceType" TargetReplicaSetSize="[CommandActorService_TargetReplicaSetSize]" MinReplicaSetSize="[CommandActorService_MinReplicaSetSize]">
+            <UniformInt64Partition PartitionCount="[CommandActorService_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
+         </StatefulService>
+      </Service>
+   </DefaultServices>
+</ApplicationManifest>
